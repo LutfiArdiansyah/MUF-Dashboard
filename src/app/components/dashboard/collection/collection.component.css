@@ -9,3 +9,7 @@
 .gauge .gauge-tick path {
     stroke: #003665 !important;
 }
+
+.center {
+    text-align: center;
+}

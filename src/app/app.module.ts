@@ -11,6 +11,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune'
+
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LandingComponent } from './components/landing/landing.component';
@@ -36,6 +41,7 @@ import { ReportCabangComponent } from './components/dashboard/report-cabang/repo
     HttpClientModule,
     ClrFormsNextModule,
     NgxChartsModule,
+    FusionChartsModule.forRoot(FusionCharts, Charts, Zune),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

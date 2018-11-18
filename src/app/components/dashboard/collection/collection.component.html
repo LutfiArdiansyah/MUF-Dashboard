@@ -1,104 +1,27 @@
-<div *ngIf="!f_monthly_usage && !f_application_usage && !f_menu_usage && !f_job_usage" class="loader">
+<!-- <div *ngIf="!f_monthly_usage && !f_application_usage && !f_menu_usage && !f_job_usage" class="loader">
   <span class="spinner spinner-lg">
     Loading...
   </span>
-</div>
+</div> -->
 <div class="content-container">
   <main class="content-area">
 
-    <div class="card">
-      <div class="card-block">
-        <div class="progress top loop" max="100" *ngIf="!f_ready"><progress></progress></div>
-        <h4 class="card-title">Application - {{year}} - {{branch}}</h4>
-        <p class="card-text" style="width: 100% !important;">
-          <ngx-charts-bar-vertical-2d *ngIf="f_ready" [animations]="animations" [view]="view" [scheme]="colorScheme"
-            [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [tooltipDisabled]="tooltipDisabled"
-            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [showGridLines]="showGridLines" [barPadding]="barPadding"></ngx-charts-bar-vertical-2d>
-        </p>
-      </div>
-      <div class="card-footer">
-        <div class="cursor-pointer" (click)="refresh()">
-          <clr-icon shape="refresh"></clr-icon>
-          Reload
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <div class="progress top loop" max="100" *ngIf="!multi_acq"><progress></progress></div>
-            <h4 class="card-title">ACQ - {{month}} - {{year}} - {{branch}}</h4>
-            <p class="card-text" style="width: 25% !important;">
-              <ngx-charts-gauge *ngIf="multi_acq" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
-                [results]="multi_acq" [legend]="showLegend"></ngx-charts-gauge>
-            </p>
-          </div>
-          <div class="card-footer">
-            <div class="cursor-pointer" (click)="refresh()">
-              <clr-icon shape="refresh"></clr-icon>
-              Reload
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <div class="progress top loop" max="100" *ngIf="!multi_mssvy"><progress></progress></div>
-            <h4 class="card-title">MUF Survey - {{month}} - {{year}} - {{branch}}</h4>
-            <p class="card-text" style="width: 25% !important;">
-              <ngx-charts-gauge *ngIf="multi_mssvy" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
-                [results]="multi_mssvy" [legend]="showLegend"></ngx-charts-gauge>
-            </p>
-          </div>
-          <div class="card-footer">
-            <div class="cursor-pointer" (click)="refresh()">
-              <clr-icon shape="refresh"></clr-icon>
-              Reload
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-block">
-            <div class="progress top loop" max="100" *ngIf="!multi_acq"><progress></progress></div>
-            <h4 class="card-title">MUF ON - {{month}} - {{year}} - {{branch}}</h4>
-            <p class="card-text" style="width: 25% !important;">
-              <ngx-charts-gauge *ngIf="multi_acq" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
-                [results]="multi_acq" [legend]="showLegend"></ngx-charts-gauge>
-            </p>
-          </div>
-          <div class="card-footer">
-            <div class="cursor-pointer" (click)="refresh()">
-              <clr-icon shape="refresh"></clr-icon>
-              Reload
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1 class="center">MONTHLY COLLECTION DASHBOARD</h1>
 
     <div class="row">
 
       <div class="col-md-6">
         <div class="card">
           <div class="card-block">
-            <div class="progress top loop" max="100" *ngIf="!multi_menu_acq"><progress></progress></div>
-            <h4 class="card-title">ACQ - {{month}} - {{year}} - {{branch}}</h4>
-            <p class="card-text" style="width: 50% !important;">
-              <ngx-charts-number-card *ngIf="multi_menu_acq" [animations]="animations" [view]="view_card" [scheme]="colorScheme"
-                [results]="multi_menu_acq"></ngx-charts-number-card>
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">% NCL</h4>
+            <p class="card-text" style="width: 25% !important;">
+              <ngx-charts-gauge *ngIf="data_gauge" [animations]="animations" [view]="view_gauge2" [scheme]="colorScheme"
+                [results]="data_gauge" [legend]="showLegend"></ngx-charts-gauge>
             </p>
           </div>
           <div class="card-footer">
-            <div class="cursor-pointer" (click)="refresh()">
+            <div class="cursor-pointer">
               <clr-icon shape="refresh"></clr-icon>
               Reload
             </div>
@@ -109,11 +32,115 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-block">
-            <div class="progress top loop" max="100" *ngIf="!multi_job_mssvy"><progress></progress></div>
-            <h4 class="card-title">MUF Survey - {{month}} - {{year}} - {{branch}}</h4>
-            <p class="card-text" style="width: 50% !important;">
-              <ngx-charts-number-card *ngIf="multi_job_mssvy" [animations]="animations" [view]="view_card" [scheme]="colorScheme"
-                [results]="multi_job_mssvy"></ngx-charts-number-card>
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">NCL/10<sup>6</sup></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <ngx-charts-gauge *ngIf="data_gauge" [animations]="animations" [view]="view_gauge2" [scheme]="colorScheme"
+                [results]="data_gauge" [legend]="showLegend"></ngx-charts-gauge>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">LOR/10<sup>6</sup></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <ngx-charts-gauge *ngIf="data_gauge" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
+                [results]="data_gauge" [legend]="showLegend"></ngx-charts-gauge>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">WO/10<sup>6</sup></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <ngx-charts-gauge *ngIf="data_gauge" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
+                [results]="data_gauge" [legend]="showLegend"></ngx-charts-gauge>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">NCI NET/10<sup>6</sup></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <ngx-charts-gauge *ngIf="data_gauge" [animations]="animations" [view]="view_gauge" [scheme]="colorScheme"
+                [results]="data_gauge" [legend]="showLegend"></ngx-charts-gauge>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">COLLECTION EFFECTIVENESS PERFORMANCE</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">COLLECTION EFFECTIVENESS PERFORMANCE</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_bar" [dataFormat]="dataFormat" [dataSource]="dataSourceBar"
+                style="display: inline-block !important;">
+              </fusioncharts>
             </p>
           </div>
           <div class="card-footer">
@@ -127,68 +154,292 @@
 
     </div>
 
+    <div class="row">
 
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">AR VS BALANCE AR</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource2">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">LOSSES PERFORMANCE</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource3">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">UNIT REPO BY OVD</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_line" [dataFormat]="dataFormat" [dataSource]="dataSourceLine">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">AMOUNT REPO BY OVD</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_line" [dataFormat]="dataFormat" [dataSource]="dataSourceLine"
+                style="display: inline-block !important;">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">PERFORMANCE REPO, SOLD, STOCK BY UNIT</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="full_widt" [height]="height" [type]="type_bar" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceBar" style="display: inline-block !important;">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">REPO BY PORTOFOLIO</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">REPO BY OBJECT YEAR</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">REPO BY LAST INSTALLMENT NUMBER</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">REPO BY GROUP DP</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">UNIT SOLD BY OBJECT YEAR</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">UNIT SOLD BY LAST INSTALLMENT NUMBER</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">RR PCT BY OBJECT YEARS</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <div class="progress top loop" max="100"><progress></progress></div>
+            <h4 class="card-title center">RR PCT BY LAST INSTALLMENT NUMBER</h4>
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+                [dataSource]="dataSourceStackCol">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer" (click)="refresh()">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
   </main>
   <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
-    <clr-vertical-nav-group routerLinkActive="active">
-      <clr-icon shape="building" class="is-solid" clrVerticalNavIcon></clr-icon>
-      Branch
-      <clr-vertical-nav-group-children>
-        <a clrVerticalNavLink>
-          <clr-checkbox [(clrChecked)]="all_branchs.f_checked_all_branchs" [clrDisabled]="all_branchs.f_disabled_all_branchs"
-            (click)="allBranchs()"> All Branch</clr-checkbox>
-        </a>
-        <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink *ngFor="let item of list_branchs">
-            <clr-checkbox [(clrChecked)]="item.f_checked" [clrDisabled]="item.f_disabled" (click)="onClickBranch()">
-              {{item.BRANCH_NAME | titlecase}}
-            </clr-checkbox>
-          </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <clr-vertical-nav-group routerLinkActive="active">
-      <clr-icon shape="line-chart" class="is-solid" clrVerticalNavIcon></clr-icon>
-      Year
-      <clr-vertical-nav-group-children>
-        <a clrVerticalNavLink>
-          <clr-checkbox [(clrChecked)]="all_years.f_checked_all_years" [clrDisabled]="all_years.f_disabled_all_years"
-            (click)="allYears()"> All Years</clr-checkbox>
-        </a>
-        <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink *ngFor="let item of years">
-            <clr-checkbox [(clrChecked)]="item.f_checked" [clrDisabled]="item.f_disabled" (click)="onClickYears()">
-              {{item.name}}
-            </clr-checkbox>
-          </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
-    <clr-vertical-nav-group routerLinkActive="active">
-      <clr-icon shape="bar-chart" class="is-solid" clrVerticalNavIcon></clr-icon>
-      Month
-      <clr-vertical-nav-group-children>
-        <a clrVerticalNavLink>
-          <clr-checkbox [(clrChecked)]="all_months.f_checked_all_months" [clrDisabled]="all_months.f_disabled_all_months"
-            (click)="allMonths()"> All Months</clr-checkbox>
-        </a>
-        <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink *ngFor="let item of months">
-            <clr-checkbox [(clrChecked)]="item.f_checked" [clrDisabled]="item.f_disabled" (click)="onClickMonths()">
-              {{item.name}}
-            </clr-checkbox>
-          </a>
-        </clr-vertical-nav-group-children>
-      </clr-vertical-nav-group-children>
-    </clr-vertical-nav-group>
   </clr-vertical-nav>
 </div>
-<div class="modal" *ngIf="f_alert">
-  <div class="modal-dialog fadeDown in" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      Branch / Year / Month tidak boleh kosong.
-    </div>
-  </div>
-</div>
-<div *ngIf="f_alert" class="modal-backdrop fade in" aria-hidden="true"></div>
