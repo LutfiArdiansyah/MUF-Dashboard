@@ -3,11 +3,12 @@ import { ServicesService } from 'src/app/services/services.service';
 import { Branch, MonthlyUsage } from 'src/app/entity/muf-dashboard';
 
 @Component({
-  selector: 'app-reportapps',
-  templateUrl: './reportapps.component.html',
-  styleUrls: ['./reportapps.component.css']
+  selector: 'app-collection',
+  templateUrl: './collection.component.html',
+  styleUrls: ['./collection.component.css']
 })
-export class ReportappsComponent implements OnInit {
+export class CollectionComponent implements OnInit {
+  collapsed: boolean = true;
   list_branchs: Branch[];
   months = [
     { name: 'January', value: '01', f_checked: false, f_disabled: false },

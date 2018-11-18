@@ -1,0 +1,56 @@
+h1,p,td,th {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.center {
+    text-align: center;
+}
+
+.table-header {
+    color: white;
+    background-color: #003655 !important;
+}
+
+.middle-center {
+    text-align: center;
+    vertical-align: middle;
+    background-color: #c8c8c8;
+    color: black !important;
+}
+
+.header2 {
+    background-color: #c8c8c8;
+    color: black !important;
+}
+
+.row1 {
+    background-color: #003655 !important;
+    color: white;
+    text-align: center;
+    
+}
+
+.column1{
+    background-color: #c8c8c8;
+    color: black;
+}
+
+.row2 {
+    background-color: rgb(115, 151, 52);
+    color: white;
+    text-align: center
+}
+
+
+.row3 {
+    background-color: #8b5806;
+    color: white;
+    text-align: center
+}
+
+.row4 {
+    background-color: rgb(132, 0, 255);
+    color: white;
+    text-align: center
+}

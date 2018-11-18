@@ -9,16 +9,22 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
-import { ReportappsComponent } from './components/reportapps/reportapps.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LandingComponent } from './components/landing/landing.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CollectionComponent } from './components/dashboard/collection/collection.component';
+import { ReportCabangComponent } from './components/dashboard/report-cabang/report-cabang.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReportappsComponent
+    LandingComponent,
+    HeaderComponent,
+    CollectionComponent,
+    ReportCabangComponent
   ],
   imports: [
     BrowserModule,

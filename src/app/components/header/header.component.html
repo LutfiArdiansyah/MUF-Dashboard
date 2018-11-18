@@ -1,0 +1,29 @@
+<clr-header>
+  <div class="branding">
+    <a class="nav-link">
+      <clr-icon shape="dashboard" size="24"></clr-icon>
+      <span class="title">MUF Dashboard</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <clr-dropdown class="col-md-10">
+      <button class="nav-icon" clrDropdownTrigger>
+        <a href="javascript://" class="nav-link nav-text">Dashboard</a>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom">
+        <a href="javascript://" clrDropdownItem [routerLink]="['reportapps']" routerLinkActive="router-link-active" >Dashboard Collection</a>
+        <a href="javascript://" clrDropdownItem [routerLink]="['report-cabang']" routerLinkActive="router-link-active" >Dashboard Report Cabang</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <clr-dropdown class="col-md-10">
+      <button class="nav-icon" clrDropdownTrigger>
+        <a href="javascript://" class="nav-link nav-text">Report</a>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom">
+        <a href="javascript://" clrDropdownItem>About</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+  <div class="header-actions">
+  </div>
+</clr-header>
