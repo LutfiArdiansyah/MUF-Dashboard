@@ -23,6 +23,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CollectionComponent } from './components/dashboard/collection/collection.component';
 import { ReportCabangComponent } from './components/dashboard/report-cabang/report-cabang.component';
 
+FusionChartsModule.fcRoot(FusionCharts, Charts, Zune)
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +43,8 @@ import { ReportCabangComponent } from './components/dashboard/report-cabang/repo
     HttpClientModule,
     ClrFormsNextModule,
     NgxChartsModule,
-    FusionChartsModule.forRoot(FusionCharts, Charts, Zune),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    FusionChartsModule,
+    ServiceWorkerModule.register('/dashboard/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

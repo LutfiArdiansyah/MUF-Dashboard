@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
-import { Branch, MonthlyUsage } from 'src/app/entity/muf-dashboard';
 
 @Component({
   selector: 'app-collection',
